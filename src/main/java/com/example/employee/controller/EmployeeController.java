@@ -15,9 +15,11 @@ public class EmployeeController {
     private final EmployeeService service;
 
     @GetMapping
-    public Page<Employee> list(@RequestParam int page,
-                               @RequestParam int size,
-                               @RequestParam String sortBy) {
+    public Page<Employee> list(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+
         return service.getAll(page, size, sortBy);
     }
 
